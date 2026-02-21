@@ -4,4 +4,5 @@
   </Folder>
   <Project Path="Database_01/Database_01.csproj" Id="0124653e-1cf9-4511-8ce3-a4700ae4ea5f" />
   <Project Path="One.WebApi/One.WebApi.csproj" />
+  <Project Path="Two.WebApi/Two.WebApi.csproj" Id="f656fea6-5b14-4b8c-bfc2-16dc3a734956" />
 </Solution>

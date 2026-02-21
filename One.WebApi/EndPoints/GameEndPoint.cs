@@ -1,10 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Database_01.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using One.WebApi.DataBase;
 using One.WebApi.Dtos.Games;
 
 namespace One.WebApi.EndPoints
 {
     public static class GameEndPoint
     {
+        private static readonly AppDbContext _GameContext = new AppDbContext();
+
         public static List<GameDto> games =
             [
                 //new GameDto(2,"COC","Role Play",3.24M,new DateOnly(2012,12,12))
@@ -20,8 +25,12 @@ namespace One.WebApi.EndPoints
 
             group.MapGet("/", () =>
             {
+                //if (games.Count <= 0) return Results.NotFound();
+                //return Results.Ok(new {Games  = games});
+
+                var games = _GameContext.Games.AsNoTracking().ToList();
                 if (games.Count <= 0) return Results.NotFound();
-                return Results.Ok(new {Games  = games});
+                return Results.Ok(new {Games = games});
             });
 
             group.MapGet("/{id:int}", ([FromRoute]int? id) => Results.Ok(games.FirstOrDefault(g=>g.Id == id)) )
