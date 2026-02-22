@@ -6,6 +6,8 @@ using One.ConsoleApp1.Models;
 var quoteEndpoint = new QuoteEndPoint();
 var todoEndPoint = new TodoEndPoint();
 
+var postEndPoint = new PostEndPoint();
+
 
 //await quoteEndpoint.ReadAsync();
 //await quoteEndpoint.GetOneAsync(3);
@@ -17,11 +19,11 @@ var todoEndPoint = new TodoEndPoint();
 //await quoteEndpoint.CreateAsync(newQuote);
 
 
-var result = await todoEndPoint.ReadAllAsync();
-foreach (var todo in result?.todos!)
-{
-    Console.WriteLine($"Todo ->> {todo.todo}");
-}
+//var result = await todoEndPoint.ReadAllAsync();
+//foreach (var todo in result?.todos!)
+//{
+//    Console.WriteLine($"Todo ->> {todo.todo}");
+//}
 
 //var todo = await todoEndPoint.GetOneAsync(5);
 //Console.WriteLine($"Todo - {todo!.todo}");
@@ -33,3 +35,25 @@ foreach (var todo in result?.todos!)
 
 
 //await todoEndPoint.DeleteAsync(id:1);
+
+
+
+//var result = await postEndPoint.GetAll();
+
+//foreach (var post in result!.posts)
+//{
+//    Console.WriteLine($"Post title =>> {post.title} \n");
+//}
+
+//var p = await postEndPoint.GetOneAsync(1);
+//Console.WriteLine($"Body -->{p!.body}");
+
+
+//var newPost = await postEndPoint.CreateAsync(new Post { body = "test body", title = "test title", userId = 15 });
+//Console.WriteLine($"new post title ==> {newPost!.title}");
+
+
+//await postEndPoint.UpdateAsync(2, new Post { title = "change title" ,id = 2});
+
+var res = await postEndPoint.DeleteAsync(2);
+Console.WriteLine(res.Content);
