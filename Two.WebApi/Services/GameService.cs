@@ -9,17 +9,27 @@ namespace Two.WebApi.Services
     {
         private readonly AppDbContext _db = new AppDbContext();
 
-        public  BaseResponseModel<List<Game>> GetAllGames()
+        public  BaseResponseModel<List<Game>?> GetAllGames()
         {
             var games = _db.Games.AsNoTracking().ToList() as List<Game>;
-            var response = BaseResponseModel<List<Game>>.Success(true, 200, "Get all games",games);
+
+            if(games is null)
+            {
+                return BaseResponseModel<List<Game>?>.ValidationError(false,404,"Not found Games",games);
+            }
+
+            var response = BaseResponseModel<List<Game>?>.Success(true, 200, "Get all games",games);
             return response;
         }
 
-        public Game? GetGame(int id)
+        public BaseResponseModel<Game?> GetGame(int id)
         {
-            var game = _db.Games.FirstOrDefault(g=>g.GameId == id);
-            return game;
+            var game = _db.Games.FirstOrDefault(g => g.GameId == id);
+            if(game is null)
+            {
+                return BaseResponseModel<Game?>.SysTemError(false, 404, "Not found",game);
+            }
+            return BaseResponseModel<Game?>.Success(true, 200, "Get Game", game);
         }
 
         public Game? Create(CreateGameDto createGameDto)
