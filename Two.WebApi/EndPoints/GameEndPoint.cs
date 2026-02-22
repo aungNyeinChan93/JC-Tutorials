@@ -15,8 +15,12 @@ namespace Two.WebApi.EndPoints
             {
                 var result = _gameService.GetAllGames();
 
-                if (result.IsError) return Results.BadRequest();
-                return Results.Ok(result);
+                if (result.IsError)
+                {
+                    if (result.ResponseType == Models.ResponseType.SystemError) return Results.StatusCode(500);
+                    if (result.ResponseType == Models.ResponseType.ValidationError) return Results.BadRequest("Client Error");
+                }
+                return Results.Ok(new {Games = result.ResponseData});
             });
 
             group.MapGet("/{id}", ([FromRoute]int id) =>
