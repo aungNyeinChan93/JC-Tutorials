@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Database_01.Models;
+using Microsoft.AspNetCore.Mvc;
 using Two.WebApi.Dtos.Games;
+using Two.WebApi.Helpers;
+using Two.WebApi.Models;
 using Two.WebApi.Services;
 
 namespace Two.WebApi.EndPoints
@@ -13,20 +16,40 @@ namespace Two.WebApi.EndPoints
 
             group.MapGet("/", () =>
             {
-                var result = _gameService.GetAllGames();
-
-                if (result.IsError)
+                try
                 {
-                    if (result.ResponseType == Models.ResponseType.SystemError) return Results.StatusCode(500);
-                    if (result.ResponseType == Models.ResponseType.ValidationError) return Results.BadRequest("Client Error");
+                    var result = _gameService.GetAllGames();
+
+                    if (result.IsError)
+                    {
+                        if (result.ResponseType == ResponseType.SystemError) return Results.StatusCode(500);
+                        if (result.ResponseType == ResponseType.ValidationError) return Results.BadRequest("Client Error");
+                    }
+                    return Results.Ok(new { Games = result.ResponseData });
+                    //ResponseHelper.Execute<List<Game>?>(result);
                 }
-                return Results.Ok(new {Games = result.ResponseData});
+                catch (Exception err)
+                {
+                    return Results.BadRequest(err.Message);
+                }
             });
 
             group.MapGet("/{id}", ([FromRoute]int id) =>
             {
-                var games = _gameService.GetGame(id);
-                return Results.Ok(games);
+                try
+                {
+                    var result = _gameService.GetGame(id);
+                    if (result.IsError)
+                    {
+                        if (result.ResponseType == ResponseType.ValidationError) return Results.NotFound("Game Not found!");
+                        if (result.ResponseType == ResponseType.SystemError) return Results.StatusCode(500);
+                    }
+                    return Results.Ok(result.ResponseData);
+                }
+                catch (Exception err)
+                {
+                    return Results.BadRequest(new {Message =  err.Message});
+                }
             }).WithName("GETGAME");
 
             group.MapPost("/", ([FromBody] CreateGameDto createGameDto) =>
