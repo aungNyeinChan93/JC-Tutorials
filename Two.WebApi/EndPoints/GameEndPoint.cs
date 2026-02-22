@@ -13,8 +13,10 @@ namespace Two.WebApi.EndPoints
 
             group.MapGet("/", () =>
             {
-                var games = _gameService.GetAllGames();
-                return Results.Ok(games);
+                var result = _gameService.GetAllGames();
+
+                if (result.IsError) return Results.BadRequest();
+                return Results.Ok(result);
             });
 
             group.MapGet("/{id}", ([FromRoute]int id) =>

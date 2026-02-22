@@ -1,6 +1,7 @@
 ﻿using Database_01.Models;
 using Microsoft.EntityFrameworkCore;
 using Two.WebApi.Dtos.Games;
+using Two.WebApi.Models;
 
 namespace Two.WebApi.Services
 {
@@ -8,10 +9,11 @@ namespace Two.WebApi.Services
     {
         private readonly AppDbContext _db = new AppDbContext();
 
-        public  List<Game> GetAllGames()
+        public  BaseResponseModel<List<Game>> GetAllGames()
         {
             var games = _db.Games.AsNoTracking().ToList() as List<Game>;
-            return games;
+            var response = BaseResponseModel<List<Game>>.Success(true, 200, "Get all games",games);
+            return response;
         }
 
         public Game? GetGame(int id)
