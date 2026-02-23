@@ -4,7 +4,7 @@ using System.Data;
 
 namespace Three.WebApi.Services
 {
-    public class BlogService // Basiness layer 
+    public class BlogService // Business layer 
     {
         private readonly AppDbContext _db; // <== add db layer 
 

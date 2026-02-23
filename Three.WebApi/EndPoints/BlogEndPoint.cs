@@ -1,5 +1,6 @@
 ﻿using Database_02.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Three.WebApi.Services;
 
 namespace Three.WebApi.EndPoints
@@ -35,10 +36,14 @@ namespace Three.WebApi.EndPoints
 
             });
 
-            group.MapDelete("/{id:int}", ([FromServices]BlogService blogService, [FromRoute]int id) =>
+            group.MapDelete("/{id:int}", ([FromServices]AppDbContext db, [FromRoute]int id) =>
             {
-                var result = blogService.Delete(id);
-                return result ? Results.NoContent() : Results.BadRequest();
+                //var result = blogService.Delete(id);
+                var blog = db.TblBlogs.AsNoTracking().FirstOrDefault(b => b.BlogId == id);
+                if(blog is null) return Results.BadRequest();
+                db.Entry(blog).State = EntityState.Deleted;
+                var result =db.SaveChanges();
+                return result >=1 ? Results.NoContent() : Results.BadRequest();
             });
 
             return app;
