@@ -1,4 +1,5 @@
 ﻿using Database_01.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Two.WebApi.Dtos.Games;
 using Two.WebApi.Models;
@@ -7,7 +8,13 @@ namespace Two.WebApi.Services
 {
     public class GameService
     {
-        private readonly AppDbContext _db = new AppDbContext();
+        private readonly AppDbContext _db;
+
+
+        public GameService(AppDbContext db)
+        {
+            _db = db;
+        }
 
         public  BaseResponseModel<List<Game>?> GetAllGames()
         {

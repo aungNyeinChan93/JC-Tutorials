@@ -9,16 +9,25 @@ namespace Two.WebApi.EndPoints
 {
     public static class GameEndPoint
     {
-        public static GameService _gameService = new GameService();
+        //public static GameService _gameService = new GameService();
+
+        //private readonly GameService _gameService;
+
+        //public static GameEndPoint(GameService gameService)
+        //{
+        //    _gameService = gameService;
+        //}
+
+
         public static WebApplication UseGames(this WebApplication app)
         {
             var group = app.MapGroup("/api/games");
 
-            group.MapGet("/", () =>
+            group.MapGet("/", ([FromServices] GameService gameService) =>
             {
                 try
                 {
-                    var result = _gameService.GetAllGames();
+                    var result = gameService.GetAllGames();
 
                     if (result.IsError)
                     {
@@ -34,27 +43,27 @@ namespace Two.WebApi.EndPoints
                 }
             });
 
-            group.MapGet("/{id}", ([FromRoute]int id) =>
+            group.MapGet("/{id}", ([FromRoute]int id, [FromServices]GameService gameService) =>
             {
                 try
                 {
-                    var result = _gameService.GetGame(id);
+                    var result = gameService.GetGame(id);
                     if (result.IsError)
                     {
                         if (result.ResponseType == ResponseType.ValidationError) return Results.NotFound("Game Not found!");
                         if (result.ResponseType == ResponseType.SystemError) return Results.StatusCode(500);
                     }
                     return Results.Ok(result.ResponseData);
-                }
+                } 
                 catch (Exception err)
                 {
                     return Results.BadRequest(new {Message =  err.Message});
                 }
             }).WithName("GETGAME");
 
-            group.MapPost("/", ([FromBody] CreateGameDto createGameDto) =>
+            group.MapPost("/", ([FromServices] GameService gameService ,[FromBody] CreateGameDto createGameDto) =>
             {
-                var game = _gameService.Create(createGameDto);
+                var game = gameService.Create(createGameDto);
                 if (game is null) return Results.BadRequest();
                 return Results.CreatedAtRoute("GETGAME",new {id = game.GameId} ,game);
             });
