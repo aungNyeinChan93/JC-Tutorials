@@ -9,7 +9,7 @@ namespace Three.WebApi.EndPoints
     {
         public static WebApplication UseBlogs(this WebApplication app)
         {
-            var group = app.MapGroup("/api/blogs");
+            var group = app.MapGroup("/api/blogs"); 
 
             group.MapGet("/", ([FromServices] IBlogService blogService ) => // Action|method dependency injection
             {
