@@ -9,7 +9,12 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="Refit" Version="10.0.1" />
     <PackageReference Include="RestSharp" Version="113.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Database_01\Database_01.csproj" />
   </ItemGroup>
 
 </Project>

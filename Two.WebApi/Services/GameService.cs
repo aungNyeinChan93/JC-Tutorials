@@ -27,7 +27,7 @@ namespace Two.WebApi.Services
             var game = _db.Games.FirstOrDefault(g => g.GameId == id);
             if(game is null)
             {
-                return BaseResponseModel<Game?>.SysTemError(false, 404, "Not found",game);
+                return BaseResponseModel<Game?>.ValidationError(false, 404, "Not found",game);
             }
             return BaseResponseModel<Game?>.Success(true, 200, "Get Game", game);
         }

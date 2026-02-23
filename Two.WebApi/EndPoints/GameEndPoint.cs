@@ -25,7 +25,7 @@ namespace Two.WebApi.EndPoints
                         if (result.ResponseType == ResponseType.SystemError) return Results.StatusCode(500);
                         if (result.ResponseType == ResponseType.ValidationError) return Results.BadRequest("Client Error");
                     }
-                    return Results.Ok(new { Games = result.ResponseData });
+                    return Results.Ok(result.ResponseData);
                     //ResponseHelper.Execute<List<Game>?>(result);
                 }
                 catch (Exception err)

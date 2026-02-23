@@ -48,7 +48,7 @@ namespace One.ConsoleApp1.EndPoint
             request.AddJsonBody(post);
 
             //var response = await _rest.PatchAsync<Post>(request);
-            var response = await _rest.ExecuteAsync(request);
+            var response = await _rest.ExecuteAsync<Post>(request);
             Console.WriteLine(response.Content);
         }
 
