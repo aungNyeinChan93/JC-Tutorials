@@ -4,11 +4,12 @@ using System.Data;
 
 namespace Three.WebApi.Services
 {
-    public class BlogService // Business layer 
+    public class BlogService : IBlogService
+    // Business layer 
     {
         private readonly AppDbContext _db; // <== add db layer 
 
-        public BlogService(AppDbContext db) // Constructor Dependency injection
+        public BlogService(AppDbContext db) // Constructor Dependency injection 
         {
             this._db = db;
         }
@@ -29,7 +30,7 @@ namespace Three.WebApi.Services
         {
             _db.Add(blog);
             var res = _db.SaveChanges();
-            return res >= 1? blog :null;
+            return res >= 1 ? blog : null;
         }
 
         public TblBlog? Update(int id, TblBlog blog)
@@ -48,7 +49,7 @@ namespace Three.WebApi.Services
         public bool Delete(int id)
         {
             var blog = _db.TblBlogs.AsNoTracking().FirstOrDefault(b => b.BlogId == id);
-            if(blog is null) return false;
+            if (blog is null) return false;
 
             _db.Entry(blog).State = EntityState.Deleted;
             int res = _db.SaveChanges();

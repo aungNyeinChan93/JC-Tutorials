@@ -11,25 +11,25 @@ namespace Three.WebApi.EndPoints
         {
             var group = app.MapGroup("/api/blogs");
 
-            group.MapGet("/", ([FromServices] BlogService blogService ) => // Action|method dependency injection
+            group.MapGet("/", ([FromServices] IBlogService blogService ) => // Action|method dependency injection
             {
                 var blogs = blogService.GetAll();
                 return Results.Ok(blogs);
             });
 
-            group.MapGet("/{id:int}", ([FromServices] BlogService blogService, [FromRoute]int id) =>
+            group.MapGet("/{id:int}", ([FromServices] IBlogService blogService, [FromRoute]int id) =>
             {
                 var blog = blogService.GetOne(id);
                 return Results.Ok(blog);
             }).WithName("Get-blog");
 
-            group.MapPost("/", ([FromServices]BlogService blogService, [FromBody]TblBlog blog) =>
+            group.MapPost("/", ([FromServices]IBlogService blogService, [FromBody]TblBlog blog) =>
             {
                 var result = blogService.Create(blog);
                 return result is not null ? Results.CreatedAtRoute("Get-blog",new {id = result.BlogId },result) : Results.BadRequest();
             });
 
-            group.MapPut("/{id:int}", ([FromServices]BlogService blogService, [FromRoute]int id, [FromBody]TblBlog blog) =>
+            group.MapPut("/{id:int}", ([FromServices]IBlogService blogService, [FromRoute]int id, [FromBody]TblBlog blog) =>
             {
                 var result = blogService.Update(id, blog);
                 return result is not null ? Results.Ok(result): Results.BadRequest();

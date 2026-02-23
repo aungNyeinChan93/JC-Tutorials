@@ -14,7 +14,7 @@ builder.Services.AddDbContext<AppDbContext>((option) =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("database_02"));
 });
 
-builder.Services.AddScoped<BlogService>();
+builder.Services.AddScoped<IBlogService,BlogService>();  //  dependency and Polymorphism
 
 
 var app = builder.Build();
