@@ -73,8 +73,8 @@ RecipesEndPoint recipesEndPoint = new RecipesEndPoint();
 //var recipe = await recipesEndPoint.GetByIdAsync(1);
 //Console.WriteLine($"recipe name => {recipe!.name}");
 
-//var recipe = await recipesEndPoint.CreateAsync(new Recipe { name = "Banana Soup"});
-//Console.WriteLine($"{recipe!.name}");
+var recipe = await recipesEndPoint.CreateAsync(new Recipe { name = "Banana Soup" });
+Console.WriteLine($"{recipe!.name}");
 
 //var updateRecipe = await recipesEndPoint.UpdateAsync(2, new Recipe { name = "Orange Juice"});
 //Console.WriteLine($"Update Recipe ==> {updateRecipe?.name}");
@@ -84,24 +84,24 @@ RecipesEndPoint recipesEndPoint = new RecipesEndPoint();
 //Console.WriteLine($"{deleteResult!.name}");
 
 
-GameEndPoint gameEndPoint = new GameEndPoint();
+//GameEndPoint gameEndPoint = new GameEndPoint();
 
-var games = await gameEndPoint.GetGamesAsync();
-foreach (var game in games!)
-{
-    Console.WriteLine($"{game.GameId} :: game name ==> {game.Name}");
-}
+//var games = await gameEndPoint.GetGamesAsync();
+//foreach (var game in games!)
+//{
+//    Console.WriteLine($"{game.GameId} :: game name ==> {game.Name}");
+//}
 
 
-try
-{
-    var g = await gameEndPoint.GetGameAsync(888);
-    Console.WriteLine($"game name is {g.Name}");
-}
-catch (ApiException err)
-{
-    Console.WriteLine(err.Message);
-}
+//try
+//{
+//    var g = await gameEndPoint.GetGameAsync(888);
+//    Console.WriteLine($"game name is {g.Name}");
+//}
+//catch (ApiException err)
+//{
+//    Console.WriteLine(err.Message);
+//}
 
 //var newGame = await gameEndPoint.CreateGameAsync(new Game { Name = "Harvest Moon",Genre = "Farming",Price = 7000});
 //Console.WriteLine($" new game name is {newGame?.Name}");

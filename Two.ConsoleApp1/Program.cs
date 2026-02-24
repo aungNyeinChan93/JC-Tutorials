@@ -2,6 +2,7 @@
 
 
 using Two.ConsoleApp1.EndPoints;
+using Two.ConsoleApp1.Models;
 
 BlogEndPoint blogEndPoint = new BlogEndPoint();
 
@@ -36,5 +37,25 @@ PostEndPoint postEndPoint = new PostEndPoint();
 //var post = await postEndPoint.GetOnePostAsync(1);
 //Console.WriteLine($"post title ==> {post!.title}");
 
-var p = await postEndPoint.CreatePostAsync(new Two.ConsoleApp1.Models.Post { body = "tes boffyfyf",title="test"});
-Console.WriteLine($"Body ==>{p!.title}");
+//var p = await postEndPoint.CreatePostAsync(new Two.ConsoleApp1.Models.Post { body = "tes boffyfyf",title="test"});
+//Console.WriteLine($"Body ==>{p!.title}");
+
+UserEndPoint userEndPoint = new UserEndPoint();
+
+//var res = await userEndPoint.GetUsersAsync();
+//foreach (var user in res!.users)
+//{
+//    Console.WriteLine($"user name is {user?.firstName} \n");
+//}
+
+//var user = await userEndPoint.GetUserAsync(1);
+//Console.WriteLine($"user name is {user?.firstName}");
+
+//var createUser = await userEndPoint.CreateUserAsync(new User { firstName="chan" ,lastName = "chan",age = 34});
+//Console.WriteLine($"user name is {createUser!.firstName}");
+
+//var updateUser = await userEndPoint.UpdateUserAsync(1,new User { lastName = "owen"});
+//Console.WriteLine($"user name is {updateUser?.lastName}");
+
+var deleteUser = await userEndPoint.DeleteUserAsync(1);
+Console.WriteLine(deleteUser?.lastName);
