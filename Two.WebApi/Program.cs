@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("Game"));
-});
+},ServiceLifetime.Transient,ServiceLifetime.Transient);
 
 builder.Services.AddScoped<GameService>();
 
