@@ -8,6 +8,7 @@
   <Project Path="Four.WebApi/Four.WebApi.csproj" Id="01aa7cdd-4cb1-4b13-8f51-74707c310803" />
   <Project Path="One.ConsoleApp1/One.ConsoleApp1.csproj" Id="96df56d8-c1ae-41f8-a126-0d6869499ad2" />
   <Project Path="One.WebApi/One.WebApi.csproj" />
+  <Project Path="Three.ConsoleApp1/Three.ConsoleApp1.csproj" Id="ce88214b-61a1-4c64-be36-9bcb1d373258" />
   <Project Path="Three.WebApi/Three.WebApi.csproj" Id="d03a2d36-685a-4a32-8cc7-de978a7c6e6f" />
   <Project Path="Two.ConsoleApp1/Two.ConsoleApp1.csproj" Id="68a5c1d1-83bb-49b3-bf4f-a6712c875db6" />
   <Project Path="Two.WebApi/Two.WebApi.csproj" Id="f656fea6-5b14-4b8c-bfc2-16dc3a734956" />
