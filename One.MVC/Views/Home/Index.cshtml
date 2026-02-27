@@ -1,0 +1,26 @@
+﻿@{
+
+    ViewData["Title"] = "Home Pageee";
+
+    string title = "Hello MVC";
+
+    int age = ViewBag.age;
+
+}
+
+
+<div class="text-center">
+    <h1 class="display-4">Welcome @(title) @Model.name @age @ViewData["title"]</h1>
+    <p id="test"></p>
+    <p>@ViewData["country"]</p>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+
+@section Scripts{
+    <script>
+        let test = document.getElementById("test");
+        test.innerText = "Hello JS"
+        console.log("Hello JS");
+    </script>
+}

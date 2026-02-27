@@ -9,8 +9,10 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="NGuid" Version="1.0.0" />
     <PackageReference Include="Refit" Version="10.0.1" />
     <PackageReference Include="RestSharp" Version="113.1.0" />
+    <PackageReference Include="Ulid" Version="1.4.1" />
   </ItemGroup>
 
   <ItemGroup>

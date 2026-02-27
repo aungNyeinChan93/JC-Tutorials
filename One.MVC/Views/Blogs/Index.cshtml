@@ -1,0 +1,48 @@
+﻿@model List<TblBlog>
+
+@{
+    ViewData["title"] = "Blogs Page";
+
+    var isSuccess = Convert.ToBoolean(TempData["isSuccess"]);
+}
+
+<section>
+    @if (!isSuccess)
+    {
+        <span class="text-danger text-sm">@TempData["message"]</span>
+    }
+    else
+    {
+        <span class="text-success text-sm">@TempData["message"]</span>
+    }
+
+    <div class="p-2 my-4 ">
+            <a href="/blogs/create" class="btn btn-success">New Blogs</a>
+        </div>
+       <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Description</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var blog in Model)
+            {
+                <tr>
+                    <th scope="row">@blog.BlogId</th>
+                    <td>@blog.Title</td>
+                    <td>@blog.AuthorName</td>
+                    <td>@blog.Description</td>
+                    <td class="">
+                        <a class=" btn btn-info" href="/blogs/details/@blog.BlogId">Detail</a>
+                        <a class=" btn btn-warning" href="/blogs/edit/@blog.BlogId">Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>

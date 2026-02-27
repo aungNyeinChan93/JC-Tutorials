@@ -73,8 +73,8 @@ RecipesEndPoint recipesEndPoint = new RecipesEndPoint();
 //var recipe = await recipesEndPoint.GetByIdAsync(1);
 //Console.WriteLine($"recipe name => {recipe!.name}");
 
-var recipe = await recipesEndPoint.CreateAsync(new Recipe { name = "Banana Soup" });
-Console.WriteLine($"{recipe!.name}");
+//var recipe = await recipesEndPoint.CreateAsync(new Recipe { name = "Banana Soup" });
+//Console.WriteLine($"{recipe!.name}");
 
 //var updateRecipe = await recipesEndPoint.UpdateAsync(2, new Recipe { name = "Orange Juice"});
 //Console.WriteLine($"Update Recipe ==> {updateRecipe?.name}");
@@ -105,3 +105,12 @@ Console.WriteLine($"{recipe!.name}");
 
 //var newGame = await gameEndPoint.CreateGameAsync(new Game { Name = "Harvest Moon",Genre = "Farming",Price = 7000});
 //Console.WriteLine($" new game name is {newGame?.Name}");
+
+
+var id = Guid.NewGuid();
+Console.WriteLine(id.ToString());
+
+var id2 = Ulid.NewUlid();
+var id3 = Ulid.NewUlid();
+Console.WriteLine(id2.ToString());
+Console.WriteLine(id3);

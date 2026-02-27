@@ -37,6 +37,7 @@ namespace Three.WebApi.Services
         {
             var updateBlog = _db.TblBlogs.AsNoTracking().FirstOrDefault(b => b.BlogId == id);
 
+            //updateBlog!.BlogId = blog.BlogId ? blog.BlogId : updateBlog.BlogId;
             updateBlog!.Title = blog.Title;
             updateBlog!.Description = blog.Description;
             updateBlog!.AuthorName = blog.AuthorName;

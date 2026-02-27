@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["title"] = "Create Blog";
+}
+
+<section>
+
+    <div class="container-sm mx-auto p-4 my-5">
+        <form action="/blogs/save" method="post">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" name="Title" placeholder="Title">
+            </div>
+            <div class="mb-3">
+                <label for="author" class="form-label">Author</label>
+                <input type="text" class="form-control" id="author" name="AuthorName" placeholder="Author">
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <input type="text" class="form-control" id="description" name="Description" placeholder="Description">
+            </div>
+            <div class="mb-3">
+                <input type="submit" value="Save" class="btn btn-success">
+            </div>
+        </form>
+    </div>
+
+</section>
