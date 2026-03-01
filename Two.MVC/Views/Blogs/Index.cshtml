@@ -1,0 +1,63 @@
+﻿@model List<TblBlog>
+
+@{
+    ViewData["title"] = "Blogs Page";
+    var blogsError = Convert.ToString(TempData["error"]);
+
+}
+
+
+<section class=" container p-4 my-2">
+    <div class="p-3 my-2">
+        <a href="/blogs/createView" class="btn btn-secondary">Create Blog</a>
+    </div>
+    @if (blogsError !=null)
+    {
+        <span class="text-sm-center text-danger">@blogsError</span>
+    }
+
+    @if(Model is null )
+    {
+        <span class="text-sm-center text-danger">@blogsError</span>
+    }
+    else
+    {
+        <div>
+            
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Author</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody> 
+                        @foreach (var blog in Model)
+                        {
+                            <tr>
+                                    <th scope="row">@blog.BlogId</th>
+                                    <td>@blog.Title</td>
+                                    <td>@blog.AuthorName</td>
+                                    <td>@blog.Description</td>
+                                    <td>
+                                <a href="@($"/blogs/detail/{blog.BlogId}")" class="btn btn-info">Detail</a>
+                                <a href="@($"/blogs/edit/{blog.BlogId}")" class="btn btn-warning">Edit</a>
+                                <a href="@($"/blogs/delete/{blog.BlogId}")" class="btn btn-danger">Delete</a>
+                                    </td>
+                             </tr>
+                        
+                        }
+                    </tbody>
+                </table>
+        </div>
+        
+    }
+
+
+
+
+
+</section>

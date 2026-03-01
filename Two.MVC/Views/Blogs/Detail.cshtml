@@ -1,0 +1,32 @@
+﻿@model TblBlog?
+
+@{
+    ViewData["title"] = "Blog Detail Page";
+    var error = Convert.ToString(TempData["error"]);
+    
+}
+
+
+<section class="container mx-auto p-3">
+    @if(error is not null)
+    {
+        <span class="p-2 text-sm-center text-danger">@error</span>
+    }
+
+    @if(Model is not null)
+    {
+        <div class="card p-3">
+            <p class="text-success"> @Model.BlogId</p>
+            <p class="text-success"> @Model.Title</p>
+            <p class="text-success"> @Model.AuthorName</p>
+            <p class="text-success"> @Model.Description</p>
+            <a href="/blogs/index" class="btn btn-link d-inline">Back</a>
+        </div>
+    }
+    else
+    {
+        <span class="text-bg-danger ">Blog Not Found!</span>
+    }
+
+
+</section>

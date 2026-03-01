@@ -1,0 +1,31 @@
+﻿@model TblBlog?
+
+@{
+    ViewData["title"] = "Edit Page";
+
+}
+
+
+<section>
+    @if(Model is not null)
+    {
+        <form action="/blogs/createAction/@Model.BlogId" method="post">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" value="@Model.Title" placeholder="Title" name="Title">
+            </div>
+            <div class="mb-3">
+                <label for="Author" class="form-label">Author</label>
+                <input type="text" class="form-control" id="Author" value="@Model.AuthorName" name="AuthorName" placeholder="Author">
+            </div>
+            <div class="mb-3">
+                <label for="Description" class="form-label">Description </label>
+                <input type="text" class="form-control" id="Description" value="@Model.Description" name="Description" placeholder="Description">
+            </div>
+            <div class="mb-3">
+                <input type="submit" class="btn btn-primary"  value="Update" />
+            </div>
+
+        </form>
+    }
+</section>

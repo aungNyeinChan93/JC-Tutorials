@@ -12,5 +12,6 @@
   <Project Path="Three.ConsoleApp1/Three.ConsoleApp1.csproj" Id="ce88214b-61a1-4c64-be36-9bcb1d373258" />
   <Project Path="Three.WebApi/Three.WebApi.csproj" Id="d03a2d36-685a-4a32-8cc7-de978a7c6e6f" />
   <Project Path="Two.ConsoleApp1/Two.ConsoleApp1.csproj" Id="68a5c1d1-83bb-49b3-bf4f-a6712c875db6" />
+  <Project Path="Two.MVC/Two.MVC.csproj" Id="807e3599-ae31-4a64-97c5-15c8f4dc69a7" />
   <Project Path="Two.WebApi/Two.WebApi.csproj" Id="f656fea6-5b14-4b8c-bfc2-16dc3a734956" />
 </Solution>
