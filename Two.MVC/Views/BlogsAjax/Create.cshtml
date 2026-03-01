@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["title"] = "Create Blog";
+}
+
+
+<section>
+
+        
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control"  id="title" placeholder="Title" value="Title">
+        </div>
+        <div class="mb-3">
+            <label for="Author" class="form-label">Author</label>
+            <input type="text" class="form-control" id="Author" value="AuthorName" placeholder="Author">
+        </div>
+        <div class="mb-3">
+            <label for="Description" class="form-label">Description </label>
+            <input type="text" class="form-control" id="Description" value="Description" placeholder="Description">
+        </div>
+        <div class="mb-3">
+            <input type="button" id="btnCreate" class="btn btn-primary" value="Create" />
+        </div>
+
+
+</section>
+
+
+@section Scripts{
+
+    <script>
+        $(document).ready(()=>{
+
+
+            $("#btnCreate").click(()=>{
+                let title = $("#title").val();
+                let description = $("#Description").val();
+                let author = $("#Author").val();
+
+                $.ajax({
+                    url:"/blogsAjax/save",
+                    type:"POST",
+                    data:{
+                        Title :title,
+                        AuthorName :author,
+                        Description :description
+                    },
+                    success:(res)=>{
+                        console.log(res)
+                        location.href = "/blogsAjax/index"
+                    },
+                    error:(err)=>{
+                        console.log(err);
+                    }
+                });
+            });
+
+        });
+
+    </script>
+}

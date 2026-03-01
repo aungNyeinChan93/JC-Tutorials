@@ -5,6 +5,11 @@
 
 
 <section>
+
+    <div class="container-sm mx-auto p-2 ">
+        <a href="/blogsAjax/create" class="btn btn-info">Creaet</a>
+    </div>
+
     <table class="table table-responsive">
         <thead>
             <tr>
@@ -53,34 +58,34 @@
         }).catch(e=>console.log(e));
 
         // ajax
-        $(document).ready(()=>{
-            $.ajax({
-                url:"/blogsAjax/getallblogs",
-                type:"GET",
-                success:function(res){
-                    console.log({res});
-                    for(i = 0;i <res.length;i++){
-                    let role = (`
-                        <tr>
-                            <th scope="row">${res[i].blogId}</th>
-                            <th scope="row">${res[i].title}</th>
-                            <th scope="row">${res[i].authorName}</th>
-                            <th scope="row">${res[i].description}</th>
-                            <td>
-                                <a class="btn btn-info">Detail</a>
-                                <a  class="btn btn-warning">Edit</a>
-                                <a  class="btn btn-danger">Delete</a>
-                            </td>
-                        </tr>
-                `);
-                tblBlog.innerHTML += role;
-            }
-                },
-                error: (err)=>{
-                    console.log(err)
-                }
-            });
-        })
+        // $(document).ready(()=>{
+        //     $.ajax({
+        //         url:"/blogsAjax/getallblogs",
+        //         type:"GET",
+        //         success:function(res){
+        //             console.log({res});
+        //             for(i = 0;i <res.length;i++){
+        //             let role = (`
+        //                 <tr>
+        //                     <th scope="row">${res[i].blogId}</th>
+        //                     <th scope="row">${res[i].title}</th>
+        //                     <th scope="row">${res[i].authorName}</th>
+        //                     <th scope="row">${res[i].description}</th>
+        //                     <td>
+        //                         <a href="/" class="btn btn-info">Detail</a>
+        //                         <a  class="btn btn-warning">Edit</a>
+        //                         <a  class="btn btn-danger">Delete</a>
+        //                     </td>
+        //                 </tr>
+        //         `);
+        //         $("#tblBlog").append(role);
+        //     }
+        //         },
+        //         error: (err)=>{
+        //             console.log(err)
+        //         } 
+        //     });
+        // })
         
 
 
