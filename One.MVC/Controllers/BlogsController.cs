@@ -45,7 +45,7 @@ namespace One.MVC.Controllers
             catch (Exception ex)
             {
                 TempData["isSuccess"] = false;
-                TempData["message"] = "create fail";
+                TempData["message"] = ex.Message;
             }
             return RedirectToAction("Index");
         }
@@ -58,11 +58,23 @@ namespace One.MVC.Controllers
             return View();
         }
 
-        [HttpPut("/blogs/update")]
-        public IActionResult Update(TblBlog blog)
+        [HttpPost("/blogs/update")]
+        public IActionResult Update([FromForm]TblBlog blog)
         {
             var updateBLog = _blogService.Update(blog.BlogId, blog);
             return RedirectToAction("Index");
-            }
+            
         }
+
+        [HttpPost("/blogs/delete/{id:int}")]
+        public IActionResult Delete([FromRoute]int id)
+        {
+            var isSuccess = _blogService.Delete(id);
+            TempData["isDeleteSuccess"] = isSuccess;
+            return RedirectToAction("Index");
+        }
+
+     }
+
+   
 }

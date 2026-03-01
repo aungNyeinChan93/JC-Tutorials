@@ -46,7 +46,7 @@ namespace Three.WebApi.Services
             var res = _db.SaveChanges();
             return res >= 1 ? updateBlog : null;
         }
-
+        
         public bool Delete(int id)
         {
             var blog = _db.TblBlogs.AsNoTracking().FirstOrDefault(b => b.BlogId == id);

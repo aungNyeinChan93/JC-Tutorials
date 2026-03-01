@@ -4,17 +4,29 @@
     ViewData["title"] = "Blogs Page";
 
     var isSuccess = Convert.ToBoolean(TempData["isSuccess"]);
+    var isDeleteSuccess = Convert.ToBoolean(TempData["isDeleteSuccess"]);
+    var isShowAlert = TempData["isSuccess"] != null || TempData["isDeleteSuccess"] !=null;
 }
 
 <section>
-    @if (!isSuccess)
+    @if (isShowAlert)
     {
-        <span class="text-danger text-sm">@TempData["message"]</span>
+        @if (!isSuccess)
+        {
+            <span class="text-danger text-sm">@TempData["message"]</span>
+        }
+        else
+        {
+            <span class="text-success text-sm">@TempData["message"]</span>
+        }
+
+        @if (isDeleteSuccess)
+        {
+            <span class="text-success text-sm">Delete success!</span>
+        }
     }
-    else
-    {
-        <span class="text-success text-sm">@TempData["message"]</span>
-    }
+
+   @* <p>@(isDeleteSuccess ? "Delete Success":"Delete Fail")</p> *@
 
     <div class="p-2 my-4 ">
             <a href="/blogs/create" class="btn btn-success">New Blogs</a>
@@ -40,9 +52,21 @@
                     <td class="">
                         <a class=" btn btn-info" href="/blogs/details/@blog.BlogId">Detail</a>
                         <a class=" btn btn-warning" href="/blogs/edit/@blog.BlogId">Edit</a>
+                        <form action="/blogs/delete/@blog.BlogId" method="post" class="d-inline">
+                              <button id="btnDelete" type="submit" class="btn btn-danger">Delete</button>
+                        </form>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </section>
+
+@section Scripts{
+    <script>
+        let btnDelete = document.getElementById("btnDelete");
+        btnDelete.addEventListener('click',()=>{
+           confirm('are you sure');
+        });
+    </script>
+}

@@ -7,7 +7,7 @@
 
     <div class="container-sm mx-auto p-4 my-5">
         <form action="/blogs/update" method="post">
-            <input type="hidden"  name="@oldBlog.BlogId" />
+            <input type="hidden"  name="BlogId" value="@oldBlog.BlogId" />
             <p>@oldBlog.BlogId</p>
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
