@@ -1,0 +1,88 @@
+﻿
+@{
+
+}
+
+
+<section>
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Description</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody id="tblBlog">
+        
+        </tbody>
+    </table>
+
+</section>
+
+
+@section Scripts
+{
+    <script>
+        const fetchAllBlogs =async()=>{
+           const response = await fetch("/blogsAjax/GetALlBlogs");
+           const data = await response.json();
+           return data;
+        }
+        var tblBlog = document.getElementById("tblBlog");
+        fetchAllBlogs().then(res=>{
+            console.log(res);
+            for(i = 0;i <res.length;i++){
+                let role = (`
+                    <tr>
+                        <th scope="row">${res[i].blogId}</th>
+                        <th scope="row">${res[i].title}</th>
+                        <th scope="row">${res[i].authorName}</th>
+                        <th scope="row">${res[i].description}</th>
+                        <td>
+                        <a class="btn btn-info">Detail</a>
+                        <a  class="btn btn-warning">Edit</a>
+                        <a  class="btn btn-danger">Delete</a>
+                    </td>
+                    </tr>
+                `);
+                tblBlog.innerHTML += role;
+            }
+        }).catch(e=>console.log(e));
+
+        // ajax
+        $(document).ready(()=>{
+            $.ajax({
+                url:"/blogsAjax/getallblogs",
+                type:"GET",
+                success:function(res){
+                    console.log({res});
+                    for(i = 0;i <res.length;i++){
+                    let role = (`
+                        <tr>
+                            <th scope="row">${res[i].blogId}</th>
+                            <th scope="row">${res[i].title}</th>
+                            <th scope="row">${res[i].authorName}</th>
+                            <th scope="row">${res[i].description}</th>
+                            <td>
+                                <a class="btn btn-info">Detail</a>
+                                <a  class="btn btn-warning">Edit</a>
+                                <a  class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                `);
+                tblBlog.innerHTML += role;
+            }
+                },
+                error: (err)=>{
+                    console.log(err)
+                }
+            });
+        })
+        
+
+
+    </script>
+}
