@@ -1,5 +1,6 @@
 using Database_02.Models;
 using Microsoft.EntityFrameworkCore;
+using RestSharp;
 using Three.WebApi.Services;
 using Two.MVC.Services;
 
@@ -11,9 +12,15 @@ builder.Services.AddDbContext<AppDbContext>((option) =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DbConnetion")!);
 },ServiceLifetime.Transient,ServiceLifetime.Transient);
+
 builder.Services.AddScoped<IBlogService,BlogService>();
 builder.Services.AddScoped<HttpClient>();
 builder.Services.AddScoped<HttpClientService>();
+//builder.Services.AddScoped<RestClient>(sp =>
+//{
+//    return new RestClient();
+//});
+builder.Services.AddScoped<RestClientService>();
 
 var app = builder.Build();
 
