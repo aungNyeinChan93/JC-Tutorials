@@ -1,0 +1,30 @@
+﻿@model Todos
+
+@{
+    ViewData["title"] = "Todo Lists";
+    var todos = Model.todos;
+}
+
+<section action="container-sm mx-auto p-3 my-4">
+    @if(todos is not null)
+    {
+        <ul>
+            @foreach (var todo in todos)
+            {
+                <li  class="p-2 text-md-center my-2 text-success">
+                    <a href="/todos/view/@todo.id">
+                        @todo.todo
+                    </a>
+                </li>
+            }
+        </ul>
+    }
+</section>
+
+@section Scripts
+{
+    <script>
+        var todos = @Html.Raw(JsonConvert.SerializeObject(todos))
+        console.log({todos})
+    </script>
+}
