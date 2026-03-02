@@ -2,7 +2,7 @@
 
 @{
     ViewData["title"] = "Quotes Lists";
-    
+    var quotes = Model.quotes;
 }
 
 <section class="container mx-auto my-3 p-2">
@@ -20,6 +20,8 @@
 @section Scripts
 {
     <script>
-        console.log(@Model.quotes)
+
+        let quotes =@Html.Raw(JsonConvert.SerializeObject(Model.quotes))
+        console.log(quotes)
     </script>
 }
