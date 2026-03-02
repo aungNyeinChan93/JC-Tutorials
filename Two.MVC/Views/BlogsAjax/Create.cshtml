@@ -47,6 +47,9 @@
                     },
                     success:(res)=>{
                         console.log(res)
+                        if(!res.isSuccess){
+                            alert(res.message);
+                        }
                         location.href = "/blogsAjax/index"
                     },
                     error:(err)=>{

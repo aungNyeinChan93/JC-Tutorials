@@ -1,0 +1,25 @@
+﻿@model Quotes
+
+@{
+    ViewData["title"] = "Quotes Lists";
+    
+}
+
+<section class="container mx-auto my-3 p-2">
+    <ul>
+        @foreach (var quote in Model.quotes)
+        {
+            <li class="p-2 rounded my-2">
+                @(quote.quote)
+            </li>
+        }
+    </ul>
+</section>
+
+
+@section Scripts
+{
+    <script>
+        console.log(@Model.quotes)
+    </script>
+}

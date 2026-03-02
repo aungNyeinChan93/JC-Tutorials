@@ -1,6 +1,7 @@
 using Database_02.Models;
 using Microsoft.EntityFrameworkCore;
 using Three.WebApi.Services;
+using Two.MVC.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,8 @@ builder.Services.AddDbContext<AppDbContext>((option) =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("DbConnetion")!);
 },ServiceLifetime.Transient,ServiceLifetime.Transient);
 builder.Services.AddScoped<IBlogService,BlogService>();
+builder.Services.AddScoped<HttpClient>();
+builder.Services.AddScoped<HttpClientService>();
 
 var app = builder.Build();
 

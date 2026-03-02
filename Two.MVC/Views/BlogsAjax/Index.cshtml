@@ -36,7 +36,9 @@
            const data = await response.json();
            return data;
         }
+
         var tblBlog = document.getElementById("tblBlog");
+
         fetchAllBlogs().then(res=>{
             console.log(res);
             for(i = 0;i <res.length;i++){

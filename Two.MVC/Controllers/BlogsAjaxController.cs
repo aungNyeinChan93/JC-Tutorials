@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks.Dataflow;
 using Three.WebApi.Services;
+using Two.MVC.Models;
 
 namespace Two.MVC.Controllers
 {
@@ -34,7 +35,8 @@ namespace Two.MVC.Controllers
         public IActionResult Save(TblBlog blog)
         {
             var b = blogService.Create(blog);
-            return Json(b);   
+            var model = new CreateBlogResponseModel<TblBlog>(true,"Create Success",b);
+            return Json(model);   
         }
     }
 }

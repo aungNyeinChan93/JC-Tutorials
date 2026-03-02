@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
     <File Path=".gitignore" />
   </Folder>
   <Project Path="Database_01/Database_01.csproj" Id="0124653e-1cf9-4511-8ce3-a4700ae4ea5f" />
