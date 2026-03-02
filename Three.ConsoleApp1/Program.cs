@@ -1,6 +1,8 @@
 ﻿using Database_02.Models;
 using five.WebApi.Services;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Abstractions;
+using Serilog;
 
 
 
@@ -18,6 +20,13 @@ using Microsoft.Extensions.DependencyInjection;
 //    Console.WriteLine($"Blog Title ==> {blog.Title}");
 //}
 
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Debug()
+    .WriteTo.Console()
+    .WriteTo.File("log/test_Log.txt",
+        rollingInterval: RollingInterval.Day,
+        rollOnFileSizeLimit: true)
+    .CreateLogger();
 
 
 var services = new ServiceCollection();
@@ -37,5 +46,7 @@ foreach (var blog in blogs!)
 {
     Console.WriteLine($"Blog title ==>{blog.Title}");
 }
+
+Log.Information("Testing log ");
 
 
