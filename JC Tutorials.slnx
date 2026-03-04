@@ -7,10 +7,12 @@
   <Project Path="Database_02/Database_02.csproj" Id="9eecb6b5-3be4-49f9-a34d-c9664576ec73" />
   <Project Path="five.WebApi/five.WebApi.csproj" Id="cae9103f-750f-409e-8d4b-9dc111d467cc" />
   <Project Path="Four.WebApi/Four.WebApi.csproj" Id="01aa7cdd-4cb1-4b13-8f51-74707c310803" />
+  <Project Path="Login.WebApi/Login.WebApi.csproj" Id="2c029d1c-995d-40c9-ba1d-b4013d799af7" />
   <Project Path="One.ConsoleApp1/One.ConsoleApp1.csproj" Id="96df56d8-c1ae-41f8-a126-0d6869499ad2" />
   <Project Path="One.MVC/One.MVC.csproj" Id="d63f074b-730f-425c-8bbb-a4d13b8a2c7a" />
   <Project Path="One.RestApi/One.RestApi.csproj" Id="60a76bf2-dacb-496d-85fd-125fc21409d2" />
   <Project Path="One.WebApi/One.WebApi.csproj" />
+  <Project Path="Test.Console/Test.Console.csproj" Id="f3eb5115-9c5b-440f-8927-d48b10706274" />
   <Project Path="Three.ConsoleApp1/Three.ConsoleApp1.csproj" Id="ce88214b-61a1-4c64-be36-9bcb1d373258" />
   <Project Path="Three.MVC/Three.MVC.csproj" Id="d007f40b-0fdf-4692-b89a-176c2ee7eb74" />
   <Project Path="Three.WebApi/Three.WebApi.csproj" Id="d03a2d36-685a-4a32-8cc7-de978a7c6e6f" />
