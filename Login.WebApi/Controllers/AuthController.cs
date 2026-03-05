@@ -1,4 +1,5 @@
-﻿using Login.WebApi.Services;
+﻿using Login.WebApi.Filters.ActionFilters;
+using Login.WebApi.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -49,18 +50,27 @@ namespace Login.WebApi.Controllers
 
 
         [HttpPost("users")]
-        public IActionResult GetAllUsers([FromBody] LoginRequestModel loginRequestModel)
+        [ServiceFilter(typeof(AccessTokenActionFilter))]
+        public IActionResult GetAllUsers()
         {
             try
             {
-                var result = _hashService.Decrypt(loginRequestModel.AccessToken);
-                LoginModel? loginModel = JsonConvert.DeserializeObject<LoginModel>(result);
+                //HttpContext.Request.Headers.TryGetValue("Authorization", out var accessToken);
+                //if(accessToken.Count <= 0)
+                //{
+                //    return Unauthorized();
+                //}
 
-                if(loginModel!.SessionExpire < DateTime.Now)
-                {
-                    return Unauthorized("seeeion expire");
-                }
-                return Ok($"{loginModel.UserName} is authorize!");
+                ////var result = _hashService.Decrypt(loginRequestModel.AccessToken);
+                //var result = _hashService.Decrypt(accessToken.ToString());
+                //LoginModel? loginModel = JsonConvert.DeserializeObject<LoginModel>(result);
+
+                //if(loginModel!.SessionExpire < DateTime.Now)
+                //{
+                //    return Unauthorized("seeeion expire");
+                //}
+                //return Ok($"{loginModel.UserName} is authorize!");
+                return Ok();
             }
             catch (Exception err)
             {
