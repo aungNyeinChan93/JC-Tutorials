@@ -1,4 +1,5 @@
 using Login.WebApi.Filters.ActionFilters;
+using Login.WebApi.MIddlewares;
 using Login.WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +21,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAccessTokenMiddleware();
 
 app.UseAuthorization();
 

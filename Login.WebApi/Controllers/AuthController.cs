@@ -49,8 +49,8 @@ namespace Login.WebApi.Controllers
         }
 
 
+        //[ServiceFilter(typeof(AccessTokenActionFilter))]
         [HttpPost("users")]
-        [ServiceFilter(typeof(AccessTokenActionFilter))]
         public IActionResult GetAllUsers()
         {
             try
