@@ -12,13 +12,16 @@ namespace Login.WebApi.MIddlewares
         {
             _next = next;
         }
+
+        private readonly string[] AllowPath = ["/api/auth/login", "/weatherforecast"];
         public async Task InvokeAsync(HttpContext context)
         {
-
-            if (context.Request.Path.ToString().ToLower() == "/api/auth/login")
+            if (AllowPath.Contains(context.Request.Path.ToString().ToLower()))
             {
                 goto Result;
             }
+
+            
             var result = context.Request.Headers.TryGetValue("Authorization", out var accessToken);
             if(!result)
             {
